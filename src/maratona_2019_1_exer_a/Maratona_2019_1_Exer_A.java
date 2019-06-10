@@ -71,15 +71,76 @@ public class Maratona_2019_1_Exer_A {
              */
             latitude = entrada.split(";")[0];
             longitude = entrada.split(";")[1];
+            
+            
+            
+            
+            
+            
+            /**
+             * Tendo certeza que estou pegando os minutos e segundos nas
+             * variáveis certas.
+             */
+            
+            // Pegando o primeiro elemento após o slipt, que é sempre o grau.
+            String lat_aux = latitude.split(" ")[0];
 
+            // Apenas inicializando Minutos e Segundos
+            String lat_min_aux = "";
+            String lat_seg_aux = "";
+
+
+            /* ############################################################
+                        VERIFICANDO O SEGUNDO ELEMENTO DO SPLIT
+               ############################################################
+            */
+
+
+            // Pegando o segundo elemento do split, onde não tenho certetza
+            // se é minuto " ou segundo '
+            String lat_segundo_elemento = latitude.split(" ")[1];
+
+
+            // Verificando se o segundo elemento é minutos, caso
+            // contenha o caracter: ”
+            if(lat_segundo_elemento.indexOf("\"") != -1) {
+           
+            lat_min_aux = lat_segundo_elemento;
+        
+            // Caso contrário, verifico novamente pelo ’ para saber se é segundos.    
+            } else if(lat_segundo_elemento.indexOf("\'") != -1) {
+
+                lat_seg_aux = lat_segundo_elemento;
+            }
+
+
+            /* ############################################################
+                        VERIFICANDO O TERCEIRO ELEMENTO DO SPLIT
+               ############################################################
+            */
+            String lat_terceiro_elemento = latitude.split(" ")[2];
+        
+            if(lat_terceiro_elemento.indexOf("\"") != -1) {
+
+
+                lat_min_aux = lat_terceiro_elemento;
+
+            } else if(lat_terceiro_elemento.indexOf("\'") != -1) {
+
+                 lat_seg_aux = lat_terceiro_elemento;
+            }
+            
+            
+            //System.out.println("Valor do Grau = " + lat_aux);
+            //System.out.println("Valor do Minuto = " + lat_min_aux);
+            //System.out.println("Valor do Segundo = " + lat_seg_aux);
+            
+            
 
             /**
              * Removendo as informações irrelevantes de cada
              * um dos itens: º e " da LATITUDE.
              */
-            String lat_aux = latitude.split(" ")[0];
-            String lat_min_aux = latitude.split(" ")[1];
-            String lat_seg_aux = latitude.split(" ")[2];
 
             String lat_aux_limpo = remove_ultimo(lat_aux);
             String lat_min_aux_limpo = remove_ultimo(lat_min_aux);
@@ -105,7 +166,7 @@ public class Maratona_2019_1_Exer_A {
 
             /**
              ****************************************************************
-             **             CONVERTENDO OS DADOS DA LONGITUDE
+             **             CONVERTENDO OS DADOS DA LONGITUDE              **
              ****************************************************************
             **/
             String lon_aux = longitude.split(" ")[0];
@@ -147,7 +208,7 @@ public class Maratona_2019_1_Exer_A {
      */
     public static String remove_ultimo(String str) {
      
-        // Verifica o tamanho da string.
+        // Verifica o comprimento da string.
         int str_size = str.length();
         
         // subSequence retura um pedaço da string conforme os valores.
@@ -176,7 +237,7 @@ public class Maratona_2019_1_Exer_A {
         }
         
         if(lon == 0) {
-            ponto_cardeal += "Greenwich";
+            ponto_cardeal = ponto_cardeal + "Greenwich";
         } else if(lon > 0) {
              ponto_cardeal += "Leste";
         } else if(lon < 0) {
